@@ -4,20 +4,32 @@
 \alias{get_custom_theme}
 \title{Get Custom Theme}
 \usage{
-get_custom_theme(legend, xaxt, yaxt, hjust, vjust)
+get_custom_theme(
+  legend,
+  axis_text_x = FALSE,
+  axis_text_y,
+  legend_hshift = 0,
+  legend_vshift,
+  legend_box = "vertical",
+  legend_direction = "vertical"
+)
 }
 \arguments{
-\item{legend}{character description of legend position. Possible values:
-"top", "left", "right", "bottom", "center", "topleft", "topright",
-"bottomleft", "bottomright"}
+\item{legend}{legend position; string ("top", "left", "right", "bottom",
+"center", "topleft", "topright", "bottomleft", "bottomright")}
 
-\item{xaxt}{boolean to show axis text x}
+\item{axis_text_x}{tics labels at x-axis; boolean}
 
-\item{yaxt}{boolean to show axis text y}
+\item{axis_text_y}{tics labels at y-axis; boolean}
 
-\item{hjust}{numeric between -1 and 1 determining legend horizontal shift}
+\item{legend_hshift}{legend horizontal shift; numeric (-1, 1)}
 
-\item{vjust}{numeric between -1 and 1 determining legend vertical shift}
+\item{legend_vshift}{legend vertical shift; numeric (-1, 1)}
+
+\item{legend_box}{multiple legend orientation; string ("horizontal",
+"vertical")}
+
+\item{legend_direction}{legend direction; string ("horizontal", "vertical")}
 }
 \value{
 ggplot2::theme()

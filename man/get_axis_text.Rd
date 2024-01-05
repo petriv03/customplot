@@ -4,16 +4,16 @@
 \alias{get_axis_text}
 \title{Get Axis Text}
 \usage{
-get_axis_text(axis_text_visible)
+get_axis_text(visible)
 }
 \arguments{
-\item{axis_text_visible}{boolean value determining returned element}
+\item{visible}{visibility of tics labels at axis; boolean (TRUE/FALSE)}
 }
 \value{
-ggplot2::element_text (or _blank)
+ggplot2::element_text, ggplot2::element_blank
 }
 \description{
-Get normal axis text or blank
+support function
 }
 \examples{
 library(customplot)

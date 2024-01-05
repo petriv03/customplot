@@ -73,14 +73,17 @@ between <- function(value, min, max) {
 #' @param size column name (character) determining point size
 #' @param label column name (character) determining point labels
 #' @param lines boolean to highlight axis origin
-#' @param legend character description of legend position.
-#' @param xaxt boolean to show axis text x
-#' @param yaxt boolean to show axis text y
+#' @param axis_text_x boolean to show axis text x
+#' @param axis_text_y boolean to show axis text y
 #' @param ellipse boolean to show 95 percent t-distribution ellipse
-#' @param alpha numeric between 0 and 1 determining point transparency
-#' @param hjust numeric between -1 and 1 determining legend horizontal shift
-#' @param vjust numeric between -1 and 1 determining legend vertical shift
-#' @param overlap boolean allowing text overlap
+#' @param point_alpha numeric between 0 and 1 determining point transparency
+#' @param legend character description of legend position.
+#' @param legend_hshift numeric between -1 and 1 determining legend horizontal shift
+#' @param legend_vshift numeric between -1 and 1 determining legend vertical shift
+#' @param legend_box multiple legend orientation; string ("horizontal",
+#' "vertical")
+#' @param legend_direction legend direction; string ("horizontal", "vertical")
+#' @param text_overlap boolean allowing text overlap
 #' @return ggplot
 #' @examples
 #' library(customplot)
@@ -93,32 +96,40 @@ between <- function(value, min, max) {
 #' @export
 scatter_plot <- function(data_frame, x, y, color = NULL, shape = NULL,
                          size = NULL, label = NULL, xlim = NULL, ylim = NULL,
-                         lines = FALSE, legend = "topright", xaxt = TRUE,
-                         yaxt = TRUE, ellipse = FALSE, alpha = 1, hjust = 0,
-                         vjust = 0, overlap = TRUE) {
+                         lines = FALSE, legend = "topright", axis_text_x = TRUE,
+                         axis_text_y = TRUE, ellipse = FALSE, point_alpha = 1, legend_hshift = 0,
+                         legend_vshift = 0, text_overlap = TRUE,
+                         legend_box = "vertical",
+                         legend_direction = "vertical") {
+
   mapping <- get_mapping(x, y, color, shape, size, label)
   ggplot2::ggplot(data_frame, mapping) +
     get_lines(lines)[[1]] +
     get_lines(lines)[[2]] +
-    ggplot2::geom_point(alpha = alpha) +
-    get_label(label, overlap) +
+    ggplot2::geom_point(alpha = point_alpha) +
+    get_label(label, text_overlap) +
     get_xlim(xlim) +
     get_ylim(ylim) +
     ggplot2::labs(x = NULL, y = NULL) +
     get_ellipse(data_frame[, color], ellipse) +
     get_color_scheme(data_frame[, color]) +
-    get_custom_theme(legend = legend, xaxt = xaxt, yaxt = yaxt, hjust = hjust,
-                     vjust = vjust)
+    get_custom_theme(legend = legend,
+                     axis_text_x = axis_text_x,
+                     axis_text_y = axis_text_y,
+                     legend_hshift = legend_hshift,
+                     legend_vshift = legend_vshift,
+                     legend_box = legend_box,
+                     legend_direction = legend_direction)
 }
 # end function
 
 # module function =============================================================
 #' Control Legend Coordinates
 #'
-#' Control coordinates of legend between lower (0) and upper limit (1).
-#' @param coords vector of two numerics between 0 and 1.
-#' @param hjust horizontal numeric adjustment
-#' @param vjust vertical numeric adjustment
+#' support function.
+#' @param coordinates input legend coordinates; numeric (c(0, 0), c(1, 1))
+#' @param legend_hshift legend horizontal shift; numeric (-1, 1)
+#' @param legend_vshift legend vertical shift; numeric (-1, 1)
 #' @return vector of two coordinates
 #' @examples
 #' library(customplot)
@@ -128,17 +139,18 @@ scatter_plot <- function(data_frame, x, y, color = NULL, shape = NULL,
 #' get_adjusted_coords(coords, hjust = 0.3, vjust = 0.2)
 #' # 1.0 1.0
 #' @export
-get_adjusted_coords <- function(coords, hjust, vjust) {
-  c(between(coords[1] + hjust, 0, 1), between(coords[2] + vjust, 0, 1))
+get_adjusted_coords <- function(coordinates, legend_hshift, legend_vshift) {
+  c(between(coordinates[1] + legend_hshift, 0, 1),
+    between(coordinates[2] + legend_vshift, 0, 1))
 }
 # end function
 
 # module function =============================================================
 #' Get Axis Text
 #'
-#' Get normal axis text or blank
-#' @param axis_text_visible boolean value determining returned element
-#' @return ggplot2::element_text (or _blank)
+#' support function
+#' @param visible visibility of tics labels at axis; boolean (TRUE/FALSE)
+#' @return ggplot2::element_text, ggplot2::element_blank
 #' @examples
 #' library(customplot)
 #' get_axis_text(TRUE)
@@ -146,8 +158,8 @@ get_adjusted_coords <- function(coords, hjust, vjust) {
 #' get_axis_text(FALSE)
 #' # ggplot2::element_blank()
 #' @export
-get_axis_text <- function(axis_text_visible) {
-  if (axis_text_visible) {
+get_axis_text <- function(visible) {
+  if (visible) {
     ggplot2::element_text()  # normal text
   } else {
     ggplot2::element_blank()  # blank text
@@ -189,13 +201,15 @@ get_color_scheme <- function(color_column) {
 #'
 #' Customized ggplot theme, text size 8, transparent legend with custom
 #' position, presence/absence of axis text.
-#' @param legend character description of legend position. Possible values:
-#' "top", "left", "right", "bottom", "center", "topleft", "topright",
-#' "bottomleft", "bottomright"
-#' @param xaxt boolean to show axis text x
-#' @param yaxt boolean to show axis text y
-#' @param hjust numeric between -1 and 1 determining legend horizontal shift
-#' @param vjust numeric between -1 and 1 determining legend vertical shift
+#' @param legend legend position; string ("top", "left", "right", "bottom",
+#' "center", "topleft", "topright", "bottomleft", "bottomright")
+#' @param axis_text_x tics labels at x-axis; boolean
+#' @param axis_text_y tics labels at y-axis; boolean
+#' @param legend_hshift legend horizontal shift; numeric (-1, 1)
+#' @param legend_vshift legend vertical shift; numeric (-1, 1)
+#' @param legend_box multiple legend orientation; string ("horizontal",
+#' "vertical")
+#' @param legend_direction legend direction; string ("horizontal", "vertical")
 #' @return ggplot2::theme()
 #' @examples
 #' library(customplot)
@@ -203,25 +217,32 @@ get_color_scheme <- function(color_column) {
 #' p1 + get_custom_theme(legend = "topleft", xaxt = TRUE, yaxt = FALSE,
 #' hjust = 0.1, vjust = -0.1)
 #' @export
-get_custom_theme <- function(legend, xaxt, yaxt, hjust, vjust) {
+get_custom_theme <- function(legend, axis_text_x = FALSE, axis_text_y,
+                             legend_hshift = 0,
+                             legend_vshift, legend_box = "vertical",
+                             legend_direction = "vertical") {
 
   # plot elements
   bold_text <- ggplot2::element_text(face = "bold")
   small_text <- ggplot2::element_text(size = 8)
   transparent_rect <- ggplot2::element_rect(fill = "transparent")
-  legend_coordinates <- get_legend_coordinates(legend, hjust, vjust)
+  legend_coordinates <- get_legend_coordinates(legend,
+                                               legend_hshift,
+                                               legend_vshift)
 
   # custom theme
   custom_theme <- ggplot2::theme_bw() +  # black and white background
     ggplot2::theme(
       text = small_text,  # plot text
-      axis.text.x = get_axis_text(xaxt),  # axis text
-      axis.text.y = get_axis_text(yaxt),
+      axis.text.x = get_axis_text(axis_text_x),  # axis text
+      axis.text.y = get_axis_text(axis_text_y),
       legend.background = transparent_rect,  # legend properties
       legend.key = transparent_rect,
       legend.justification = legend_coordinates,
       legend.position = legend_coordinates,
-      legend.title = bold_text)
+      legend.title = bold_text,
+      legend.box = legend_box,
+      legend.direction = legend_direction)
 
   return(custom_theme)
 }

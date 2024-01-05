@@ -4,20 +4,20 @@
 \alias{get_adjusted_coords}
 \title{Control Legend Coordinates}
 \usage{
-get_adjusted_coords(coords, hjust, vjust)
+get_adjusted_coords(coordinates, legend_hshift, legend_vshift)
 }
 \arguments{
-\item{coords}{vector of two numerics between 0 and 1.}
+\item{coordinates}{input legend coordinates; numeric (c(0, 0), c(1, 1))}
 
-\item{hjust}{horizontal numeric adjustment}
+\item{legend_hshift}{legend horizontal shift; numeric (-1, 1)}
 
-\item{vjust}{vertical numeric adjustment}
+\item{legend_vshift}{legend vertical shift; numeric (-1, 1)}
 }
 \value{
 vector of two coordinates
 }
 \description{
-Control coordinates of legend between lower (0) and upper limit (1).
+support function.
 }
 \examples{
 library(customplot)

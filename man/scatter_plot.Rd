@@ -16,13 +16,15 @@ scatter_plot(
   ylim = NULL,
   lines = FALSE,
   legend = "topright",
-  xaxt = TRUE,
-  yaxt = TRUE,
+  axis_text_x = TRUE,
+  axis_text_y = TRUE,
   ellipse = FALSE,
-  alpha = 1,
-  hjust = 0,
-  vjust = 0,
-  overlap = TRUE
+  point_alpha = 1,
+  legend_hshift = 0,
+  legend_vshift = 0,
+  text_overlap = TRUE,
+  legend_box = "vertical",
+  legend_direction = "vertical"
 )
 }
 \arguments{
@@ -44,19 +46,24 @@ scatter_plot(
 
 \item{legend}{character description of legend position.}
 
-\item{xaxt}{boolean to show axis text x}
+\item{axis_text_x}{boolean to show axis text x}
 
-\item{yaxt}{boolean to show axis text y}
+\item{axis_text_y}{boolean to show axis text y}
 
 \item{ellipse}{boolean to show 95 percent t-distribution ellipse}
 
-\item{alpha}{numeric between 0 and 1 determining point transparency}
+\item{point_alpha}{numeric between 0 and 1 determining point transparency}
 
-\item{hjust}{numeric between -1 and 1 determining legend horizontal shift}
+\item{legend_hshift}{numeric between -1 and 1 determining legend horizontal shift}
 
-\item{vjust}{numeric between -1 and 1 determining legend vertical shift}
+\item{legend_vshift}{numeric between -1 and 1 determining legend vertical shift}
 
-\item{overlap}{boolean allowing text overlap}
+\item{text_overlap}{boolean allowing text overlap}
+
+\item{legend_box}{multiple legend orientation; string ("horizontal",
+"vertical")}
+
+\item{legend_direction}{legend direction; string ("horizontal", "vertical")}
 }
 \value{
 ggplot
