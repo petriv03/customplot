@@ -162,7 +162,7 @@ get_axis_text <- function(angle) {
   if (is.null(angle)) {
     ggplot2::element_blank()  # blank text
   } else {
-    ggplot2::element_text(angle = angle, vjust = 0.5, hjust = 1)  # normal text
+    ggplot2::element_text(angle = angle, vjust = 0.5, hjust = 2.5)  # normal text
   }
 }
 # end function
