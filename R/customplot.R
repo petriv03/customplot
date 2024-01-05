@@ -184,8 +184,8 @@ get_axis_text <- function(angle) {
 #' @export
 get_color_scheme <- function(color_column) {
   if (class(color_column) == "factor") {
-    #ggplot2::scale_color_brewer(palette = "Set2")
-    viridis::scale_color_viridis(discrete = TRUE)
+    ggplot2::scale_color_brewer(palette = "Set2")
+    #viridis::scale_color_viridis(discrete = TRUE)
   } else if (class(color_column) == "numeric") {
     ggplot2::scale_color_gradient2(low = "#00AFBB",
                                    mid = "#E7B800",
