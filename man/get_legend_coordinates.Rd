@@ -7,7 +7,9 @@
 get_legend_coordinates(legend, hjust, vjust)
 }
 \arguments{
-\item{legend}{character description of legend position. Possible values: "top", "left", "right", "bottom", "center", "topleft", "topright", "bottomleft", "bottomright"}
+\item{legend}{character description of legend position. Possible values:
+"top", "left", "right", "bottom", "center", "topleft", "topright",
+"bottomleft", "bottomright"}
 
 \item{hjust}{numeric between -1 and 1 determining legend horizontal shift}
 

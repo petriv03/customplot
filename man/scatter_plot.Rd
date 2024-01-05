@@ -41,15 +41,15 @@ scatter_plot(
 
 \item{lines}{boolean to highlight axis origin}
 
-\item{legend}{character description of legend position. Possible values: "top", "left", "right", "bottom", "center", "topleft", "topright", "bottomleft", "bottomright"}
+\item{legend}{character description of legend position.}
 
 \item{xaxt}{boolean to show axis text x}
 
 \item{yaxt}{boolean to show axis text y}
 
-\item{ellipse}{boolean to show 95% t-distribution ellipse}
+\item{ellipse}{boolean to show 95 percent t-distribution ellipse}
 
-\item{alpha}{numeric between 0 and 1 determining point transparency (0 fully transparent, 1 fully solid)}
+\item{alpha}{numeric between 0 and 1 determining point transparency}
 
 \item{hjust}{numeric between -1 and 1 determining legend horizontal shift}
 
@@ -63,6 +63,8 @@ Customized scatter ggplot
 }
 \examples{
 library(customplot)
+# legend: "top", "left", "right", "bottom", "center", "topleft", "topright",
+# "bottomleft", "bottomright"
 scatter_plot(data_frame = iris, x = "Sepal.Width", y = "Sepal.Length",
 color = "Petal.Width", size = "Petal.Length", shape = "Species",
 label = "Species", lines = TRUE, legend = "right", xaxt = TRUE,

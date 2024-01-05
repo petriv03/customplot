@@ -7,7 +7,9 @@
 get_custom_theme(legend, xaxt, yaxt, hjust, vjust)
 }
 \arguments{
-\item{legend}{character description of legend position. Possible values: "top", "left", "right", "bottom", "center", "topleft", "topright", "bottomleft", "bottomright"}
+\item{legend}{character description of legend position. Possible values:
+"top", "left", "right", "bottom", "center", "topleft", "topright",
+"bottomleft", "bottomright"}
 
 \item{xaxt}{boolean to show axis text x}
 

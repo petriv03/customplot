@@ -15,7 +15,7 @@ get_ellipse(color_column, ellipse)
 ggplot2::stat_ellipse()
 }
 \description{
-95% t-distribution ellipse corresponding with point color
+95 percent t-distribution ellipse corresponding with point color
 }
 \examples{
 library(customplot)

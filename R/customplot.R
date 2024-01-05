@@ -31,7 +31,8 @@ annotate <- function(plotlist, title = NULL, xlim = NULL, ylim = NULL,
   figure <- ggpubr::ggarrange(plotlist = plotlist, ncol = ncol, nrow = nrow)
   figure <- ggpubr::annotate_figure(figure,
                                     bottom = ggpubr::text_grob(xlab, size = 10),
-                                    left = ggpubr::text_grob(ylab, size = 10, rot = 90),
+                                    left = ggpubr::text_grob(ylab, size = 10,
+                                                             rot = 90),
                                     fig.lab = title, fig.lab.face = "bold")
   return(figure)
 }
@@ -72,16 +73,18 @@ between <- function(value, min, max) {
 #' @param size column name (character) determining point size
 #' @param label column name (character) determining point labels
 #' @param lines boolean to highlight axis origin
-#' @param legend character description of legend position. Possible values: "top", "left", "right", "bottom", "center", "topleft", "topright", "bottomleft", "bottomright"
+#' @param legend character description of legend position.
 #' @param xaxt boolean to show axis text x
 #' @param yaxt boolean to show axis text y
-#' @param ellipse boolean to show 95% t-distribution ellipse
-#' @param alpha numeric between 0 and 1 determining point transparency (0 fully transparent, 1 fully solid)
+#' @param ellipse boolean to show 95 percent t-distribution ellipse
+#' @param alpha numeric between 0 and 1 determining point transparency
 #' @param hjust numeric between -1 and 1 determining legend horizontal shift
 #' @param vjust numeric between -1 and 1 determining legend vertical shift
 #' @return ggplot
 #' @examples
 #' library(customplot)
+#' # legend: "top", "left", "right", "bottom", "center", "topleft", "topright",
+#' # "bottomleft", "bottomright"
 #' scatter_plot(data_frame = iris, x = "Sepal.Width", y = "Sepal.Length",
 #' color = "Petal.Width", size = "Petal.Length", shape = "Species",
 #' label = "Species", lines = TRUE, legend = "right", xaxt = TRUE,
@@ -155,7 +158,8 @@ get_axis_text <- function(axis_text_visible) {
 #' Get Color Scheme
 #'
 #' Get color scale for continuous or categorical scale
-#' @param color_column a single factor or numeric column from a data.frame determining the color
+#' @param color_column a single factor or numeric column from a data.frame
+#' determining the color
 #' @return ggplot2::scale_color_brewer or _gradient2 respectivelly
 #' @examples
 #' library(customplot)
@@ -184,7 +188,9 @@ get_color_scheme <- function(color_column) {
 #'
 #' Customized ggplot theme, text size 8, transparent legend with custom
 #' position, presence/absence of axis text.
-#' @param legend character description of legend position. Possible values: "top", "left", "right", "bottom", "center", "topleft", "topright", "bottomleft", "bottomright"
+#' @param legend character description of legend position. Possible values:
+#' "top", "left", "right", "bottom", "center", "topleft", "topright",
+#' "bottomleft", "bottomright"
 #' @param xaxt boolean to show axis text x
 #' @param yaxt boolean to show axis text y
 #' @param hjust numeric between -1 and 1 determining legend horizontal shift
@@ -223,7 +229,7 @@ get_custom_theme <- function(legend, xaxt, yaxt, hjust, vjust) {
 # module function =============================================================
 #' Get Ellipse
 #'
-#' 95% t-distribution ellipse corresponding with point color
+#' 95 percent t-distribution ellipse corresponding with point color
 #' @param color_column numeric vector determining ellipse shape
 #' @param ellipse boolean enabling ellipse display
 #' @return ggplot2::stat_ellipse()
@@ -248,7 +254,9 @@ get_ellipse <- function(color_column, ellipse) {
 #'
 #' Translate character description of legend position to vector of two
 #' coordinates. Can be adjusted.
-#' @param legend character description of legend position. Possible values: "top", "left", "right", "bottom", "center", "topleft", "topright", "bottomleft", "bottomright"
+#' @param legend character description of legend position. Possible values:
+#' "top", "left", "right", "bottom", "center", "topleft", "topright",
+#' "bottomleft", "bottomright"
 #' @param hjust numeric between -1 and 1 determining legend horizontal shift
 #' @param vjust numeric between -1 and 1 determining legend vertical shift
 #' @return vector of two numerics
