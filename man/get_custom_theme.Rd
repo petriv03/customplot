@@ -6,8 +6,8 @@
 \usage{
 get_custom_theme(
   legend,
-  axis_text_x = FALSE,
-  axis_text_y,
+  angle_text_x = FALSE,
+  angle_text_y,
   legend_hshift = 0,
   legend_vshift,
   legend_box = "vertical",
@@ -18,9 +18,9 @@ get_custom_theme(
 \item{legend}{legend position; string ("top", "left", "right", "bottom",
 "center", "topleft", "topright", "bottomleft", "bottomright")}
 
-\item{axis_text_x}{tics labels at x-axis; boolean}
+\item{angle_text_x}{angle of labels at x-axis; numeric (0, 180, NULL)}
 
-\item{axis_text_y}{tics labels at y-axis; boolean}
+\item{angle_text_y}{angle of labels at y-axis; numeric (0, 180, NULL)}
 
 \item{legend_hshift}{legend horizontal shift; numeric (-1, 1)}
 

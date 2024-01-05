@@ -4,10 +4,10 @@
 \alias{get_axis_text}
 \title{Get Axis Text}
 \usage{
-get_axis_text(visible)
+get_axis_text(angle)
 }
 \arguments{
-\item{visible}{visibility of tics labels at axis; boolean (TRUE/FALSE)}
+\item{angle}{angle of tics labels at axis; numeric (0, 180, NULL)}
 }
 \value{
 ggplot2::element_text, ggplot2::element_blank

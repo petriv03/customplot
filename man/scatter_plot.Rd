@@ -16,8 +16,8 @@ scatter_plot(
   ylim = NULL,
   lines = FALSE,
   legend = "topright",
-  axis_text_x = TRUE,
-  axis_text_y = TRUE,
+  angle_text_x = 0,
+  angle_text_y = 0,
   ellipse = FALSE,
   point_alpha = 1,
   legend_hshift = 0,
@@ -46,9 +46,9 @@ scatter_plot(
 
 \item{legend}{character description of legend position.}
 
-\item{axis_text_x}{boolean to show axis text x}
+\item{angle_text_x}{angle of tics labels at x-axis; numeric (0, 180, NULL)}
 
-\item{axis_text_y}{boolean to show axis text y}
+\item{angle_text_y}{angle of tics labels at y-axis; numeric (0, 180, NULL)}
 
 \item{ellipse}{boolean to show 95 percent t-distribution ellipse}
 

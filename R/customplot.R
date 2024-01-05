@@ -73,8 +73,8 @@ between <- function(value, min, max) {
 #' @param size column name (character) determining point size
 #' @param label column name (character) determining point labels
 #' @param lines boolean to highlight axis origin
-#' @param axis_text_x boolean to show axis text x
-#' @param axis_text_y boolean to show axis text y
+#' @param angle_text_x angle of tics labels at x-axis; numeric (0, 180, NULL)
+#' @param angle_text_y angle of tics labels at y-axis; numeric (0, 180, NULL)
 #' @param ellipse boolean to show 95 percent t-distribution ellipse
 #' @param point_alpha numeric between 0 and 1 determining point transparency
 #' @param legend character description of legend position.
@@ -96,8 +96,8 @@ between <- function(value, min, max) {
 #' @export
 scatter_plot <- function(data_frame, x, y, color = NULL, shape = NULL,
                          size = NULL, label = NULL, xlim = NULL, ylim = NULL,
-                         lines = FALSE, legend = "topright", axis_text_x = TRUE,
-                         axis_text_y = TRUE, ellipse = FALSE, point_alpha = 1, legend_hshift = 0,
+                         lines = FALSE, legend = "topright", angle_text_x = 0,
+                         angle_text_y = 0, ellipse = FALSE, point_alpha = 1, legend_hshift = 0,
                          legend_vshift = 0, text_overlap = TRUE,
                          legend_box = "vertical",
                          legend_direction = "vertical") {
@@ -114,8 +114,8 @@ scatter_plot <- function(data_frame, x, y, color = NULL, shape = NULL,
     get_ellipse(data_frame[, color], ellipse) +
     get_color_scheme(data_frame[, color]) +
     get_custom_theme(legend = legend,
-                     axis_text_x = axis_text_x,
-                     axis_text_y = axis_text_y,
+                     angle_text_x = angle_text_x,
+                     angle_text_y = angle_text_y,
                      legend_hshift = legend_hshift,
                      legend_vshift = legend_vshift,
                      legend_box = legend_box,
@@ -149,7 +149,7 @@ get_adjusted_coords <- function(coordinates, legend_hshift, legend_vshift) {
 #' Get Axis Text
 #'
 #' support function
-#' @param visible visibility of tics labels at axis; boolean (TRUE/FALSE)
+#' @param angle angle of tics labels at axis; numeric (0, 180, NULL)
 #' @return ggplot2::element_text, ggplot2::element_blank
 #' @examples
 #' library(customplot)
@@ -158,11 +158,11 @@ get_adjusted_coords <- function(coordinates, legend_hshift, legend_vshift) {
 #' get_axis_text(FALSE)
 #' # ggplot2::element_blank()
 #' @export
-get_axis_text <- function(visible) {
-  if (visible) {
-    ggplot2::element_text()  # normal text
-  } else {
+get_axis_text <- function(angle) {
+  if (is.null(angle)) {
     ggplot2::element_blank()  # blank text
+  } else {
+    ggplot2::element_text(angle = angle, vjust = 0.5, hjust = 1)  # normal text
   }
 }
 # end function
@@ -184,7 +184,8 @@ get_axis_text <- function(visible) {
 #' @export
 get_color_scheme <- function(color_column) {
   if (class(color_column) == "factor") {
-    ggplot2::scale_color_brewer(palette = "Set2")
+    #ggplot2::scale_color_brewer(palette = "Set2")
+    viridis::scale_color_viridis(discrete = TRUE)
   } else if (class(color_column) == "numeric") {
     ggplot2::scale_color_gradient2(low = "#00AFBB",
                                    mid = "#E7B800",
@@ -203,8 +204,8 @@ get_color_scheme <- function(color_column) {
 #' position, presence/absence of axis text.
 #' @param legend legend position; string ("top", "left", "right", "bottom",
 #' "center", "topleft", "topright", "bottomleft", "bottomright")
-#' @param axis_text_x tics labels at x-axis; boolean
-#' @param axis_text_y tics labels at y-axis; boolean
+#' @param angle_text_x angle of labels at x-axis; numeric (0, 180, NULL)
+#' @param angle_text_y angle of labels at y-axis; numeric (0, 180, NULL)
 #' @param legend_hshift legend horizontal shift; numeric (-1, 1)
 #' @param legend_vshift legend vertical shift; numeric (-1, 1)
 #' @param legend_box multiple legend orientation; string ("horizontal",
@@ -217,7 +218,7 @@ get_color_scheme <- function(color_column) {
 #' p1 + get_custom_theme(legend = "topleft", xaxt = TRUE, yaxt = FALSE,
 #' hjust = 0.1, vjust = -0.1)
 #' @export
-get_custom_theme <- function(legend, axis_text_x = FALSE, axis_text_y,
+get_custom_theme <- function(legend, angle_text_x = FALSE, angle_text_y,
                              legend_hshift = 0,
                              legend_vshift, legend_box = "vertical",
                              legend_direction = "vertical") {
@@ -234,8 +235,8 @@ get_custom_theme <- function(legend, axis_text_x = FALSE, axis_text_y,
   custom_theme <- ggplot2::theme_bw() +  # black and white background
     ggplot2::theme(
       text = small_text,  # plot text
-      axis.text.x = get_axis_text(axis_text_x),  # axis text
-      axis.text.y = get_axis_text(axis_text_y),
+      axis.text.x = get_axis_text(angle_text_x),  # axis text
+      axis.text.y = get_axis_text(angle_text_y),
       legend.background = transparent_rect,  # legend properties
       legend.key = transparent_rect,
       legend.justification = legend_coordinates,
