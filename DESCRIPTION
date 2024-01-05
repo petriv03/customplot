@@ -3,7 +3,7 @@ Type: Package
 Title: Customized ggplot
 Version: 0.1.0
 Author: Ivan Petrik
-Maintainer: Ivan Petrik
+Maintainer: Ivan Petrik <ivan.petrik@upol.cz>
 Description: Package to simplify the code for making gg plot
 License: What license is it under?
 Encoding: UTF-8
