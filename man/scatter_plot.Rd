@@ -21,7 +21,8 @@ scatter_plot(
   ellipse = FALSE,
   alpha = 1,
   hjust = 0,
-  vjust = 0
+  vjust = 0,
+  overlap = TRUE
 )
 }
 \arguments{
@@ -54,6 +55,8 @@ scatter_plot(
 \item{hjust}{numeric between -1 and 1 determining legend horizontal shift}
 
 \item{vjust}{numeric between -1 and 1 determining legend vertical shift}
+
+\item{overlap}{boolean allowing text overlap}
 }
 \value{
 ggplot

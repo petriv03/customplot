@@ -7,7 +7,8 @@
 get_color_scheme(color_column)
 }
 \arguments{
-\item{color_column}{a single factor or numeric column from a data.frame determining the color}
+\item{color_column}{a single factor or numeric column from a data.frame
+determining the color}
 }
 \value{
 ggplot2::scale_color_brewer or _gradient2 respectivelly

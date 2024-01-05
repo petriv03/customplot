@@ -80,6 +80,7 @@ between <- function(value, min, max) {
 #' @param alpha numeric between 0 and 1 determining point transparency
 #' @param hjust numeric between -1 and 1 determining legend horizontal shift
 #' @param vjust numeric between -1 and 1 determining legend vertical shift
+#' @param overlap boolean allowing text overlap
 #' @return ggplot
 #' @examples
 #' library(customplot)
@@ -94,13 +95,13 @@ scatter_plot <- function(data_frame, x, y, color = NULL, shape = NULL,
                          size = NULL, label = NULL, xlim = NULL, ylim = NULL,
                          lines = FALSE, legend = "topright", xaxt = TRUE,
                          yaxt = TRUE, ellipse = FALSE, alpha = 1, hjust = 0,
-                         vjust = 0) {
+                         vjust = 0, overlap = TRUE) {
   mapping <- get_mapping(x, y, color, shape, size, label)
   ggplot2::ggplot(data_frame, mapping) +
     get_lines(lines)[[1]] +
     get_lines(lines)[[2]] +
     ggplot2::geom_point(alpha = alpha) +
-    get_text_repel(label) +
+    get_label(label, overlap) +
     get_xlim(xlim) +
     get_ylim(ylim) +
     ggplot2::labs(x = NULL, y = NULL) +
@@ -411,19 +412,24 @@ get_mapping <- function(x, y, color, shape, size, label) {
 # end function
 
 # module function =============================================================
-#' Get Repel
+#' Get Label
 #'
 #' Positions of labels avoiding an overlap
-#' @param label boolean indicating repel presence
+#' @param label column name indicating label presence
+#' @param overlap boolean allowing text overlap
 #' @examples
 #' library(customplot)
 #' get_text_repel(TRUE)
 #' @export
-get_text_repel <- function(label) {
+get_label <- function(label, overlap) {
   if (is.null(label)) {
     NULL
   } else {
-    ggrepel::geom_text_repel(max.overlaps = Inf, size = 3)
+    if (overlap) {
+      ggplot2::geom_text()
+    } else {
+      ggrepel::geom_text_repel(max.overlaps = Inf, size = 3)
+    }
   }
 }
 # end function
