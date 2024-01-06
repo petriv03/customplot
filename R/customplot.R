@@ -38,22 +38,6 @@ annotate <- function(plotlist, title = NULL, xlim = NULL, ylim = NULL,
 }
 
 # module function =============================================================
-#' Between
-#'
-#' Control a numeric value between two numeric limits
-#' @param value controled numeric
-#' @param min lower limit
-#' @param max upper limit
-#' @return numeric value
-#' @examples
-#' library(customplot)
-#' between(-0.2, 0, 1)
-#' # 0
-#' between(3, 0, 1)
-#' # 1
-#' between(0.75, 0, 1)
-#' # 0.75
-#' @export
 between <- function(value, min, max) {
   if (value < min) {value <- min}
   if (value > max) {value <- max}
