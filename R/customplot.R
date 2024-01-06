@@ -140,7 +140,8 @@ get_axis_text <- function(angle) {
 #' Get Color Scheme
 #'
 #' Helper function.
-#' @noRd
+#' @keywords internal
+#' @export
 get_color_scheme <- function(color_column) {
   if (class(color_column) == "factor") {
     ggplot2::scale_color_brewer(palette = "Set2")
