@@ -41,6 +41,7 @@ annotate <- function(plotlist, title = NULL, xlim = NULL, ylim = NULL,
 #' Between
 #'
 #' Helper function.
+#' @keywords internal
 #' @noRd
 between <- function(value, min, max) {
   if (value < min) {value <- min}
@@ -112,7 +113,7 @@ scatter_plot <- function(data_frame, x, y, color = NULL, shape = NULL,
 # end function
 
 # module function =============================================================
-#' Control Legend Coordinates
+#' Get Adjusted Coords
 #'
 #' Helper function.
 #' @noRd
@@ -126,6 +127,7 @@ get_adjusted_coords <- function(coordinates, legend_hshift, legend_vshift) {
 #' Get Axis Text
 #'
 #' Helper function.
+#' @keywords internal
 #' @noRd
 get_axis_text <- function(angle) {
   if (is.null(angle)) {
@@ -141,7 +143,7 @@ get_axis_text <- function(angle) {
 #'
 #' Helper function.
 #' @keywords internal
-#' @export
+#' @noRd
 get_color_scheme <- function(color_column) {
   if (class(color_column) == "factor") {
     ggplot2::scale_color_brewer(palette = "Set2")
@@ -161,6 +163,7 @@ get_color_scheme <- function(color_column) {
 #' Get Custom Theme
 #'
 #' Helper function.
+#' @keywords internal
 #' @noRd
 get_custom_theme <- function(legend, angle_text_x = FALSE, angle_text_y,
                              legend_hshift = 0,
@@ -197,6 +200,7 @@ get_custom_theme <- function(legend, angle_text_x = FALSE, angle_text_y,
 #' Get Ellipse
 #'
 #' Helper function.
+#' @keywords internal
 #' @noRd
 get_ellipse <- function(color_column, ellipse) {
   if (class(color_column) == "factor" & ellipse == TRUE) {
@@ -211,6 +215,7 @@ get_ellipse <- function(color_column, ellipse) {
 #' Get Legend Coordinates
 #'
 #' Helper function.
+#' @keywords internal
 #' @noRd
 get_legend_coordinates <- function(legend, hjust, vjust) {
   enum <- list("bottomleft" = get_adjusted_coords(c(0, 0), hjust, vjust),
@@ -230,6 +235,7 @@ get_legend_coordinates <- function(legend, hjust, vjust) {
 #' Get Lines
 #'
 #' Helper function.
+#' @keywords internal
 #' @noRd
 get_lines <- function(lines) {
   if (lines) {
@@ -245,6 +251,7 @@ get_lines <- function(lines) {
 #' Get Mapping
 #'
 #' Helper function.
+#' @keywords internal
 #' @noRd
 get_mapping <- function(x, y, color, shape, size, label) {
 
@@ -333,6 +340,7 @@ get_mapping <- function(x, y, color, shape, size, label) {
 #' Get Label
 #'
 #' Helper function.
+#' @keywords internal
 #' @noRd
 get_label <- function(label, overlap) {
   if (is.null(label)) {
