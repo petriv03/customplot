@@ -38,6 +38,10 @@ annotate <- function(plotlist, title = NULL, xlim = NULL, ylim = NULL,
 }
 
 # module function =============================================================
+#' Between
+#'
+#' Helper function.
+#' @noRd
 between <- function(value, min, max) {
   if (value < min) {value <- min}
   if (value > max) {value <- max}
@@ -110,19 +114,8 @@ scatter_plot <- function(data_frame, x, y, color = NULL, shape = NULL,
 # module function =============================================================
 #' Control Legend Coordinates
 #'
-#' support function.
-#' @param coordinates input legend coordinates; numeric (c(0, 0), c(1, 1))
-#' @param legend_hshift legend horizontal shift; numeric (-1, 1)
-#' @param legend_vshift legend vertical shift; numeric (-1, 1)
-#' @return vector of two coordinates
-#' @examples
-#' library(customplot)
-#' coords <- c(1, 1)  # topright
-#' get_adjusted_coords(coords, hjust = -0.1, vjust = -0.1)
-#' # -0.9 -0.9
-#' get_adjusted_coords(coords, hjust = 0.3, vjust = 0.2)
-#' # 1.0 1.0
-#' @export
+#' Helper function.
+#' @noRd
 get_adjusted_coords <- function(coordinates, legend_hshift, legend_vshift) {
   c(between(coordinates[1] + legend_hshift, 0, 1),
     between(coordinates[2] + legend_vshift, 0, 1))
@@ -132,16 +125,8 @@ get_adjusted_coords <- function(coordinates, legend_hshift, legend_vshift) {
 # module function =============================================================
 #' Get Axis Text
 #'
-#' support function
-#' @param angle angle of tics labels at axis; numeric (0, 180, NULL)
-#' @return ggplot2::element_text, ggplot2::element_blank
-#' @examples
-#' library(customplot)
-#' get_axis_text(TRUE)
-#' # ggplot2::element_text()
-#' get_axis_text(FALSE)
-#' # ggplot2::element_blank()
-#' @export
+#' Helper function.
+#' @noRd
 get_axis_text <- function(angle) {
   if (is.null(angle)) {
     ggplot2::element_blank()  # blank text
@@ -154,18 +139,8 @@ get_axis_text <- function(angle) {
 # module function =============================================================
 #' Get Color Scheme
 #'
-#' Get color scale for continuous or categorical scale
-#' @param color_column a single factor or numeric column from a data.frame
-#' determining the color
-#' @return ggplot2::scale_color_brewer or _gradient2 respectivelly
-#' @examples
-#' library(customplot)
-#' get_color_scheme(iris[, "Species"])
-#' # ggplot2::scale_color_brewer(palette = "Set2")
-#' get_color_scheme(iris[, "Sepal.Width"])
-#' # ggplot2::scale_color_gradient2(low = "#00AFBB", mid = "#E7B800",
-#' high = "#FC4E07", midpoint = 3.057333)
-#' @export
+#' Helper function.
+#' @noRd
 get_color_scheme <- function(color_column) {
   if (class(color_column) == "factor") {
     ggplot2::scale_color_brewer(palette = "Set2")
@@ -184,24 +159,8 @@ get_color_scheme <- function(color_column) {
 # module function =============================================================
 #' Get Custom Theme
 #'
-#' Customized ggplot theme, text size 8, transparent legend with custom
-#' position, presence/absence of axis text.
-#' @param legend legend position; string ("top", "left", "right", "bottom",
-#' "center", "topleft", "topright", "bottomleft", "bottomright")
-#' @param angle_text_x angle of labels at x-axis; numeric (0, 180, NULL)
-#' @param angle_text_y angle of labels at y-axis; numeric (0, 180, NULL)
-#' @param legend_hshift legend horizontal shift; numeric (-1, 1)
-#' @param legend_vshift legend vertical shift; numeric (-1, 1)
-#' @param legend_box multiple legend orientation; string ("horizontal",
-#' "vertical")
-#' @param legend_direction legend direction; string ("horizontal", "vertical")
-#' @return ggplot2::theme()
-#' @examples
-#' library(customplot)
-#' p1 <- scatter_plot(iris, "Sepal.Width", "Sepal.Length")
-#' p1 + get_custom_theme(legend = "topleft", xaxt = TRUE, yaxt = FALSE,
-#' hjust = 0.1, vjust = -0.1)
-#' @export
+#' Helper function.
+#' @noRd
 get_custom_theme <- function(legend, angle_text_x = FALSE, angle_text_y,
                              legend_hshift = 0,
                              legend_vshift, legend_box = "vertical",
@@ -236,17 +195,8 @@ get_custom_theme <- function(legend, angle_text_x = FALSE, angle_text_y,
 # module function =============================================================
 #' Get Ellipse
 #'
-#' 95 percent t-distribution ellipse corresponding with point color
-#' @param color_column numeric vector determining ellipse shape
-#' @param ellipse boolean enabling ellipse display
-#' @return ggplot2::stat_ellipse()
-#' @examples
-#' library(customplot)
-#' get_ellipse(iris[, "Sepal.Width"], TRUE)
-#' # ggplot2::stat_ellipse(level = 0.95, type = "t")
-#' get_ellipse(iris[, "Sepal.Width"], FALSE)
-#' # NULL
-#' @export
+#' Helper function.
+#' @noRd
 get_ellipse <- function(color_column, ellipse) {
   if (class(color_column) == "factor" & ellipse == TRUE) {
     ggplot2::stat_ellipse(level = 0.95, type = "t")
@@ -259,21 +209,8 @@ get_ellipse <- function(color_column, ellipse) {
 # module function =============================================================
 #' Get Legend Coordinates
 #'
-#' Translate character description of legend position to vector of two
-#' coordinates. Can be adjusted.
-#' @param legend character description of legend position. Possible values:
-#' "top", "left", "right", "bottom", "center", "topleft", "topright",
-#' "bottomleft", "bottomright"
-#' @param hjust numeric between -1 and 1 determining legend horizontal shift
-#' @param vjust numeric between -1 and 1 determining legend vertical shift
-#' @return vector of two numerics
-#' @examples
-#' library(customplot)
-#' get_legend_coordinates("left", hjust = 0.1, vjust = 0.1)
-#' # ggplot2::stat_ellipse(level = 0.95, type = "t")
-#' get_ellipse(iris[, "Sepal.Width"], FALSE)
-#' # NULL
-#' @export
+#' Helper function.
+#' @noRd
 get_legend_coordinates <- function(legend, hjust, vjust) {
   enum <- list("bottomleft" = get_adjusted_coords(c(0, 0), hjust, vjust),
                "bottom" = get_adjusted_coords(c(0.5, 0), hjust, vjust),
@@ -291,23 +228,8 @@ get_legend_coordinates <- function(legend, hjust, vjust) {
 # module function =============================================================
 #' Get Lines
 #'
-#' Highlight axis x and y at their origin
-#' @param lines boolean showing axis origin
-#' @return list of ggplot2::geom_hline() and _vline()
-#' @examples
-#' library(customplot)
-#' get_lines(TRUE)
-#' # [[1]]
-#' # mapping: xintercept = ~xintercept
-#' # geom_vline: na.rm = FALSE
-#' # stat_identity: na.rm = FALSE
-#' # position_identity
-#' # [[2]]
-#' # mapping: yintercept = ~yintercept
-#' # geom_hline: na.rm = FALSE
-#' # stat_identity: na.rm = FALSE
-#' # position_identity
-#' @export
+#' Helper function.
+#' @noRd
 get_lines <- function(lines) {
   if (lines) {
     list(ggplot2::geom_vline(xintercept = 0, linetype = "dashed"),
@@ -321,19 +243,8 @@ get_lines <- function(lines) {
 # module function =============================================================
 #' Get Mapping
 #'
-#' Calculate the proportions of a ggplot
-#' @param x column name (character) determining x coordinates
-#' @param y column name (character) determining y coordinates
-#' @param color column name (character) determining point color
-#' @param shape column name (character) determining point shape
-#' @param size column name (character) determining point size
-#' @param label column name (character) determining point labels
-#' @return ggplot2::aes()
-#' @examples
-#' library(customplot)
-#' get_mapping(x = "Sepal.Width", y = "Sepal.Length", color = "Petal.Width",
-#' size = "Petal.Length", shape = "Species", label = "Species")
-#' @export
+#' Helper function.
+#' @noRd
 get_mapping <- function(x, y, color, shape, size, label) {
 
   blank <- is.null(color) & is.null(shape) & is.null(size) & is.null(label)
@@ -420,13 +331,8 @@ get_mapping <- function(x, y, color, shape, size, label) {
 # module function =============================================================
 #' Get Label
 #'
-#' Positions of labels avoiding an overlap
-#' @param label column name indicating label presence
-#' @param overlap boolean allowing text overlap
-#' @examples
-#' library(customplot)
-#' get_text_repel(TRUE)
-#' @export
+#' Helper function.
+#' @noRd
 get_label <- function(label, overlap) {
   if (is.null(label)) {
     NULL
@@ -443,13 +349,8 @@ get_label <- function(label, overlap) {
 # module function =============================================================
 #' Get xlim
 #'
-#' Adjust an x axis proportion.
-#' @param xlim vector of two numerics delimiting x axis
-#' @examples
-#' library(customplot)
-#' x <- c(0, 22)
-#' get_xlim(x)
-#' @export
+#' Helper function.
+#' @noRd
 get_xlim <- function(xlim) {
   if (is.null(xlim)) {NULL} else {ggplot2::xlim(xlim)}
 }
@@ -458,13 +359,8 @@ get_xlim <- function(xlim) {
 # module function =============================================================
 #' Get ylim
 #'
-#' Adjust an y axis proportion.
-#' @param ylim vector of two numerics delimiting y axis
-#' @examples
-#' library(customplot)
-#' y <- c(0, 22)
-#' get_xlim(y)
-#' @export
+#' Helper function.
+#' @noRd
 get_ylim <- function(ylim) {
   if (is.null(ylim)) {NULL} else {ggplot2::ylim(ylim)}
 }
