@@ -42,7 +42,7 @@ annotate <- function(plotlist, title = NULL, xlim = NULL, ylim = NULL,
 #'
 #' Helper function.
 #' @keywords internal
-#' @noRd
+#' @export
 between <- function(value, min, max) {
   if (value < min) {value <- min}
   if (value > max) {value <- max}
@@ -116,7 +116,7 @@ scatter_plot <- function(data_frame, x, y, color = NULL, shape = NULL,
 #' Get Adjusted Coords
 #'
 #' Helper function.
-#' @noRd
+#' @export
 get_adjusted_coords <- function(coordinates, legend_hshift, legend_vshift) {
   c(between(coordinates[1] + legend_hshift, 0, 1),
     between(coordinates[2] + legend_vshift, 0, 1))
@@ -128,12 +128,17 @@ get_adjusted_coords <- function(coordinates, legend_hshift, legend_vshift) {
 #'
 #' Helper function.
 #' @keywords internal
-#' @noRd
+#' @export
 get_axis_text <- function(angle) {
+  if (angle == 90) {
+    gg <- ggplot2::element_text(angle = 90, vjust = 0.5, hjust = 1)
+  } else {
+    gg <- ggplot2::element_text()
+  }
   if (is.null(angle)) {
     ggplot2::element_blank()  # blank text
   } else {
-    ggplot2::element_text(angle = angle, vjust = 0.5, hjust = 2.5)  # normal text
+    gg  # normal text
   }
 }
 # end function
@@ -143,7 +148,7 @@ get_axis_text <- function(angle) {
 #'
 #' Helper function.
 #' @keywords internal
-#' @noRd
+#' @export
 get_color_scheme <- function(color_column) {
   if (class(color_column) == "factor") {
     ggplot2::scale_color_brewer(palette = "Set2")
@@ -164,9 +169,9 @@ get_color_scheme <- function(color_column) {
 #'
 #' Helper function.
 #' @keywords internal
-#' @noRd
-get_custom_theme <- function(legend, angle_text_x = FALSE, angle_text_y,
-                             legend_hshift = 0,
+#' @export
+get_custom_theme <- function(legend, angle_text_x, angle_text_y,
+                             legend_hshift,
                              legend_vshift, legend_box = "vertical",
                              legend_direction = "vertical") {
 
@@ -201,7 +206,7 @@ get_custom_theme <- function(legend, angle_text_x = FALSE, angle_text_y,
 #'
 #' Helper function.
 #' @keywords internal
-#' @noRd
+#' @export
 get_ellipse <- function(color_column, ellipse) {
   if (class(color_column) == "factor" & ellipse == TRUE) {
     ggplot2::stat_ellipse(level = 0.95, type = "t")
@@ -216,7 +221,7 @@ get_ellipse <- function(color_column, ellipse) {
 #'
 #' Helper function.
 #' @keywords internal
-#' @noRd
+#' @export
 get_legend_coordinates <- function(legend, hjust, vjust) {
   enum <- list("bottomleft" = get_adjusted_coords(c(0, 0), hjust, vjust),
                "bottom" = get_adjusted_coords(c(0.5, 0), hjust, vjust),
@@ -236,7 +241,7 @@ get_legend_coordinates <- function(legend, hjust, vjust) {
 #'
 #' Helper function.
 #' @keywords internal
-#' @noRd
+#' @export
 get_lines <- function(lines) {
   if (lines) {
     list(ggplot2::geom_vline(xintercept = 0, linetype = "dashed"),
@@ -341,7 +346,7 @@ get_mapping <- function(x, y, color, shape, size, label) {
 #'
 #' Helper function.
 #' @keywords internal
-#' @noRd
+#' @export
 get_label <- function(label, overlap) {
   if (is.null(label)) {
     NULL
@@ -359,7 +364,7 @@ get_label <- function(label, overlap) {
 #' Get xlim
 #'
 #' Helper function.
-#' @noRd
+#' @export
 get_xlim <- function(xlim) {
   if (is.null(xlim)) {NULL} else {ggplot2::xlim(xlim)}
 }
@@ -369,7 +374,7 @@ get_xlim <- function(xlim) {
 #' Get ylim
 #'
 #' Helper function.
-#' @noRd
+#' @export
 get_ylim <- function(ylim) {
   if (is.null(ylim)) {NULL} else {ggplot2::ylim(ylim)}
 }
