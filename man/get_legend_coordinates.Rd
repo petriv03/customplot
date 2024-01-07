@@ -6,7 +6,17 @@
 \usage{
 get_legend_coordinates(legend, hjust, vjust)
 }
+\arguments{
+\item{legend}{position of a legend; "top", "bottom", "left", "right",
+"topleft", "bottomleft", "topright", "bottomright", "center"}
+
+\item{hjust}{legend horizontal shift; numeric value between 0 (very left)
+and 1 (very right).}
+
+\item{vjust}{legend vertical shift; numeric value between 0 (very bottom)
+and 1 (very top).}
+}
 \description{
-Helper function.
+Returns two-element numeric vector of legend coordinates.
 }
 \keyword{internal}

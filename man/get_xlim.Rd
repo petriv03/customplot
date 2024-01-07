@@ -6,6 +6,10 @@
 \usage{
 get_xlim(xlim)
 }
-\description{
-Helper function.
+\arguments{
+\item{xlim}{two-element numeric vector delimiting x-axis}
 }
+\description{
+Returns gg xlim
+}
+\keyword{internal}

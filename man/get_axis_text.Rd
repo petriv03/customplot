@@ -4,9 +4,13 @@
 \alias{get_axis_text}
 \title{Get Axis Text}
 \usage{
-get_axis_text(angle)
+get_axis_text(direction)
+}
+\arguments{
+\item{direction}{direction of the text; "horizontal", "vertical", "oblique",
+NULL}
 }
 \description{
-Helper function.
+Returns the text at ggplot axis
 }
 \keyword{internal}

@@ -16,67 +16,82 @@ scatter_plot(
   ylim = NULL,
   lines = FALSE,
   legend = "topright",
-  angle_text_x = 0,
-  angle_text_y = 0,
+  x_text_direction = "horizontal",
+  y_text_direction = "horizontal",
   ellipse = FALSE,
   point_alpha = 1,
   legend_hshift = 0,
   legend_vshift = 0,
   text_overlap = TRUE,
   legend_box = "vertical",
-  legend_direction = "vertical"
+  legend_direction = "vertical",
+  legend_key_size = 1
 )
 }
 \arguments{
-\item{data_frame}{source (data.frame)}
+\item{data_frame}{source data frame}
 
-\item{x}{column name (character) determining x coordinates}
+\item{x}{name of the column containing x-coordinates; character string.
+The column must be factor or numeric.}
 
-\item{y}{column name (character) determining y coordinates}
+\item{y}{name of the column containing y-coordinates; character string.
+The column must be factor or numeric.}
 
-\item{color}{column name (character) determining point color}
+\item{color}{name of the column for point color values; character string.
+The column must be factor or numeric.}
 
-\item{shape}{column name (character) determining point shape}
+\item{shape}{name of the column for point shape values; character string.
+The column must be factor.}
 
-\item{size}{column name (character) determining point size}
+\item{size}{name of the column for point size values; character string.
+The column must be numeric.}
 
-\item{label}{column name (character) determining point labels}
+\item{label}{name of the column for point labels; character string. The
+column must be character.}
 
-\item{lines}{boolean to highlight axis origin}
+\item{lines}{if TRUE then origin is highlighted by dashed x- and y-lines}
 
-\item{legend}{character description of legend position.}
+\item{legend}{position of a legend; "top", "bottom", "left", "right",
+"topleft", "bottomleft", "topright", "bottomright", "center"}
 
-\item{angle_text_x}{angle of tics labels at x-axis; numeric (0, 180, NULL)}
+\item{x_text_direction}{axis text x direction; "horizontal", "vertical",
+"oblique", NULL}
 
-\item{angle_text_y}{angle of tics labels at y-axis; numeric (0, 180, NULL)}
+\item{y_text_direction}{axis text y direction; "horizontal", "vertical",
+"oblique", NULL}
 
-\item{ellipse}{boolean to show 95 percent t-distribution ellipse}
+\item{ellipse}{if TRUE and color column is factor then 95-percent
+t-distribution ellipses appear around the color groups.}
 
-\item{point_alpha}{numeric between 0 and 1 determining point transparency}
+\item{point_alpha}{point transparency; numeric value between 0
+(fully transparent) and 1 (fully solid).}
 
-\item{legend_hshift}{numeric between -1 and 1 determining legend horizontal shift}
+\item{legend_hshift}{legend horizontal shift; numeric value between 0
+(very left) and 1 (very right).}
 
-\item{legend_vshift}{numeric between -1 and 1 determining legend vertical shift}
+\item{legend_vshift}{legend vertical shift; numeric value between 0
+(very bottom) and 1 (very top).}
 
-\item{text_overlap}{boolean allowing text overlap}
+\item{text_overlap}{if FALSE then point label overlapping is avoided. This
+action can take more computation time.}
 
-\item{legend_box}{multiple legend orientation; string ("horizontal",
-"vertical")}
+\item{legend_box}{orientation of multiple legend (if more than one point
+proportion is defined); "horizontal", "vertical"}
 
-\item{legend_direction}{legend direction; string ("horizontal", "vertical")}
+\item{legend_direction}{direction of legend keys; "horizontal", "vertical"}
+
+\item{legend_key_size}{legend key size in text lines; numeric value}
 }
 \value{
-ggplot
+customized ggplot
 }
 \description{
-Customized scatter ggplot
+Returns a figure of a customized scatter ggplot.
 }
 \examples{
 library(customplot)
-# legend: "top", "left", "right", "bottom", "center", "topleft", "topright",
-# "bottomleft", "bottomright"
 scatter_plot(data_frame = iris, x = "Sepal.Width", y = "Sepal.Length",
 color = "Petal.Width", size = "Petal.Length", shape = "Species",
-label = "Species", lines = TRUE, legend = "right", xaxt = TRUE,
-yaxt = FALSE, ellipse = FALSE, alpha = 0.5, hjust = -0.05, vjust = 0.1)
+label = "Species", lines = TRUE, legend = "right", point_alpha = 0.5,
+legend_hshift = -0.05, legend_vshift = 0.1)
 }

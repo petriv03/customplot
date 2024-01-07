@@ -6,7 +6,12 @@
 \usage{
 get_color_scheme(color_column)
 }
+\arguments{
+\item{color_column}{input vector. If class is factor then color scheme is
+6-point brewer. If class is numeric then color scheme is continuous
+three-point gradient with mean value in the middle.}
+}
 \description{
-Helper function.
+Returns a gg color scheme based on input vector class.
 }
 \keyword{internal}

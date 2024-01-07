@@ -6,7 +6,16 @@
 \usage{
 between(value, min, max)
 }
+\arguments{
+\item{value}{input numeric value}
+
+\item{min}{lower limit}
+
+\item{max}{upper limit}
+}
 \description{
-Helper function.
+Returns a numeric value delimited by an maxima and minima. If the input
+value is higher than maxima the function returns maxima. If it is lower than
+minima the result is minima. Otherwise the input value is retained.
 }
 \keyword{internal}

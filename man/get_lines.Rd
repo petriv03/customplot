@@ -4,9 +4,12 @@
 \alias{get_lines}
 \title{Get Lines}
 \usage{
-get_lines(lines)
+get_lines(allowed)
+}
+\arguments{
+\item{allowed}{if TRUE then the lines are retained in the output list}
 }
 \description{
-Helper function.
+Returns list of gg dashed lines at origin of x- and y-axis.
 }
 \keyword{internal}

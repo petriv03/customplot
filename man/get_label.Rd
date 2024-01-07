@@ -6,7 +6,14 @@
 \usage{
 get_label(label, overlap)
 }
+\arguments{
+\item{label}{name of the column for point labels; character string. The
+column must be numeric.}
+
+\item{overlap}{if FALSE then point label overlapping is avoided. This
+action can take more computation time.}
+}
 \description{
-Helper function.
+Returns gg label element.
 }
 \keyword{internal}

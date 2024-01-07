@@ -2,10 +2,18 @@
 % Please edit documentation in R/customplot.R
 \name{get_adjusted_coords}
 \alias{get_adjusted_coords}
-\title{Get Adjusted Coords}
+\title{Get Adjusted Coordinates}
 \usage{
 get_adjusted_coords(coordinates, legend_hshift, legend_vshift)
 }
-\description{
-Helper function.
+\arguments{
+\item{coordinates}{two-element numeric vector of input coordinates}
+
+\item{legend_hshift}{horizontal shift; numeric value}
+
+\item{legend_vshift}{vertical shift; numeric value}
 }
+\description{
+Returns an two-element numeric vector of the legend coordinates
+}
+\keyword{internal}

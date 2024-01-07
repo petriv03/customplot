@@ -6,6 +6,10 @@
 \usage{
 get_ylim(ylim)
 }
-\description{
-Helper function.
+\arguments{
+\item{ylim}{two-element numeric vector delimiting y-axis}
 }
+\description{
+Returns gg ylim
+}
+\keyword{internal}

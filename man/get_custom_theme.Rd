@@ -6,15 +6,39 @@
 \usage{
 get_custom_theme(
   legend,
-  angle_text_x,
-  angle_text_y,
   legend_hshift,
   legend_vshift,
-  legend_box = "vertical",
-  legend_direction = "vertical"
+  legend_box,
+  legend_direction,
+  legend_key_size,
+  x_text_direction,
+  y_text_direction
 )
 }
+\arguments{
+\item{legend}{position of a legend; "top", "bottom", "left", "right",
+"topleft", "bottomleft", "topright", "bottomright", "center"}
+
+\item{legend_hshift}{legend horizontal shift; numeric value between 0
+(very left) and 1 (very right).}
+
+\item{legend_vshift}{legend vertical shift; numeric value between 0
+(very bottom) and 1 (very top).}
+
+\item{legend_box}{orientation of multiple legend (if more than one point
+proportion is defined); "horizontal", "vertical"}
+
+\item{legend_direction}{direction of legend keys; "horizontal", "vertical"}
+
+\item{legend_key_size}{legend key size in text lines; numeric value}
+
+\item{x_text_direction}{axis text x direction; "horizontal", "vertical",
+"oblique", NULL}
+
+\item{y_text_direction}{axis text y direction; "horizontal", "vertical",
+"oblique", NULL}
+}
 \description{
-Helper function.
+Returns gg theme
 }
 \keyword{internal}

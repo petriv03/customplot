@@ -4,9 +4,15 @@
 \alias{get_ellipse}
 \title{Get Ellipse}
 \usage{
-get_ellipse(color_column, ellipse)
+get_ellipse(input_factor, allowed)
+}
+\arguments{
+\item{input_factor}{an input factor}
+
+\item{allowed}{if TRUE then the ellipse appears}
 }
 \description{
-Helper function.
+If color_column is factor and ellipse is TRUE, the function get_ellipse
+returns 95 percent t-distrubution ellipse around the color point group.
 }
 \keyword{internal}

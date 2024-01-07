@@ -15,25 +15,27 @@ annotate(
 )
 }
 \arguments{
-\item{plotlist}{list of ggplots}
+\item{plotlist}{a list of the ggplots}
 
-\item{title}{common title}
+\item{title}{a title of an annotated figure; character string}
 
-\item{xlim}{vector of two numeric values delimiting common x axis}
+\item{xlim}{a two-element numeric vector delimiting x-axis; numeric vector}
 
-\item{ylim}{vector of two numeric values delimiting common y axis}
+\item{ylim}{a two-element numeric vector delimiting y-axis; numeric vector}
 
-\item{xlab}{common x axis label}
+\item{xlab}{x-axis label common for all plots in the grid; character string}
 
-\item{ylab}{common y axis label}
+\item{ylab}{y-axis label common for all plots in the grid; character string}
 
-\item{ncol}{number of columns}
+\item{ncol}{a number of the columns in the grid; integer}
 }
 \value{
-annotated figure
+the ggplots arranged into an annotated grid
 }
 \description{
-Arrange ggplots into grid and annotate the grid.
+Arranges the ggplots into a grid and annotate it. The number of the grid
+columns is user-defined. The number of the rows are recalculated based on
+the plotlist length.
 }
 \examples{
 library(customplot)
@@ -41,6 +43,11 @@ p1 <- scatter_plot(iris, "Sepal.Width", "Sepal.Width", color = "Species")
 p2 <- scatter_plot(iris, "Sepal.Width", "Sepal.Length", color = "Species")
 p3 <- scatter_plot(iris, "Sepal.Width", "Petal.Width", color = "Species")
 p4 <- scatter_plot(iris, "Sepal.Width", "Petal.Length", color = "Species")
-annotate(list(p1, p2, p3, p4), title = "iris", xlim = c(0, 5), ylim = 0, 8),
-xlab = "Sepal.Width", ylab = "floating", ncol = 2)
+annotate(plotlist = list(p1, p2, p3, p4),
+         title = "iris",
+         xlim = c(0.5, 5.1),
+         ylim = -0.4, 8.3),
+         xlab = "Sepal.Width",
+         ylab = "floating",
+         ncol = 2)
 }
