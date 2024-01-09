@@ -293,7 +293,8 @@ get_legend_coordinates <- function(legend, hjust, vjust) {
                "top" = get_adjusted_coords(c(0.5, 1), hjust, vjust),
                "topright" = get_adjusted_coords(c(1, 1), hjust, vjust),
                "right" = get_adjusted_coords(c(1, 0.5), hjust, vjust),
-               "center" = get_adjusted_coords(c(0.5, 0.5), hjust, vjust))
+               "center" = get_adjusted_coords(c(0.5, 0.5), hjust, vjust),
+               "none" = "none")
   return(enum[[legend]])
 }
 # end function
